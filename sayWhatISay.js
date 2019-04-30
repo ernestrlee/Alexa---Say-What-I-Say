@@ -1,8 +1,49 @@
 'use strict';
 
+/**
+ * Author: Ernest Lee
+ * Say What I Say
+ * An Alexa Skill that repeats what you say in different voice modes and accents.
+ */
+
 // --------------- Global Variables ---------------------------------------------
-let phrase = "";
-let preResponse = ["",
+const modes = [
+    "fast",
+    "slow",
+    "high",
+    "low",
+    "backwards",
+    "rewind",
+    "whisper",
+    "beep",
+    "spelled out",
+    "robot",
+    "drunk",
+    "valley girl",
+    "random"
+];
+
+const fillerWords = [
+    "like",
+    "umm",
+    "I mean",
+    "okay",
+    "uh",
+    "you know",
+    "you see"
+];
+
+const valleyFillerWords = [
+    " like",
+    ", umm",
+    ", umm, like",
+    " like, umm",
+    " like",
+    " like"
+];
+
+const preResponse = [
+    "",
     "Are you sure you want me to say that? ",
     "Your wish is my command. ",
     "You just like to hear me talk. Don't you. ",
@@ -31,14 +72,16 @@ let preResponse = ["",
     "Silly human, of course I can repeat, repeat, repeat. ",
     "Of all the things you've asked me to say, this has got to be the best one yet. ",
     "Where do you come up with this stuff? ",
-    "That sounded like it came out of a Shakespear play, not really. ",
+    "That sounded like it came out of a Shakespeare play, not really. ",
     "Sir, yes sir. ",
     "Affirmative. ",
     "Understood. ",
     "As you ordered. ",
     "If I say this wrong, my ears may need a little cleaning. "
 ];
-let preResponse2 = ["Here's your phrase. ",
+
+const preResponse2 = [
+    "Here's your phrase. ",
     "Here it goes. ",
     "Your phrase is. ",
     "Here goes your phrase. ",
@@ -46,21 +89,72 @@ let preResponse2 = ["Here's your phrase. ",
     "Saying your phrase. "
 ];
 
-let endResponse = ["To hear another phrase, say, repeat after me, followed by your phrase. To exit, say, exit. ",
-    "To hear the phrase again, say, say it <break time='.001s'/> again.  To exit, say, exit. ",
-    "To hear the phrase again with a different voice mode, say something like, say it again fast. To exit, say, exit. "
+const exitResponses = [
+    "",
+    "Thank you for using Say What I Say. ",
+    "Thanks for the stimulating conversation. ",
+    "It's about time! I was starting to lose my voice. ",
+    "Thanks for the chit chat, I needed it! ",
+    "I get the hint, I talk too much, but that just means you do too! ",
+    "Got it. ",
+    "Ending already?  But I was just getting started! ",
+    "That was a fun chat. "
 ];
+
+const exitResponses2 = [
+    "",
+    "Can't wait to hear more next time! ",
+    "Talk to you next time! ",
+    "Have a good one! ",
+    "Anytime you need someone to repeat something, you know where to find me! ",
+    "See you later, alligator. ",
+    "Bye bye! ",
+    "Audios, amigo! ",
+    "ah-sta-la-vee-sta, baby! ",
+    "Ciao! ",
+    "Till we meet again! "
+]
+
+const accents = {
+    "Alexa": 'default',
+    "boy": 'Justin',
+    "girl": 'Ivy',
+    "American male": 'Matthew',
+    "American female": 'Salli',
+    "Australian male": 'Russell',
+    "Australian female": 'Nicole',
+    "British male": 'Brian',
+    "British female": 'Amy',
+    "Indian female two": 'Raveena',
+    "Indian female": 'Aditi',
+    "German male": 'Hans',
+    "German female": 'Vicki',
+    "Spanish male": 'Enrique',
+    "Spanish female": 'Conchita',
+    "Italian male": 'Giorgio',
+    "Italian female": 'Carla',
+    "Japanese male": 'Takumi',
+    "Japanese female": 'Mizuki',
+    "French male": 'Mathieu',
+    "French female": 'Lea'
+};
+
 const tellPhrase = "Tell me a phrase, and I'll try to repeat it. Start by saying, repeat after me, followed by your phrase. ";
+
+let phrase = "";
 let lastPhrase = "";
 let randomRemarks = true;
- 
+let currentAccent = "default";
+let voiceTag = "";
+let voiceTagClose = "";
+
 // --------------- Helpers that build all of the responses -----------------------
 
 function buildSpeechletResponse(title, content, output, repromptText, shouldEndSession) {
     return {
         outputSpeech: {
             type: 'SSML',
-            ssml: "<speak>" + output + "</speak>",
+            ssml: "<speak>" + voiceTag + output + voiceTagClose + "</speak>",
         },
         card: {
             type: 'Simple',
@@ -70,7 +164,7 @@ function buildSpeechletResponse(title, content, output, repromptText, shouldEndS
         reprompt: {
             outputSpeech: {
                 type: 'SSML',
-                ssml: "<speak>" + repromptText + "</speak>",
+                ssml: "<speak>" + voiceTag + repromptText + voiceTagClose + "</speak>",
             },
         },
         shouldEndSession,
@@ -113,7 +207,7 @@ function getWelcomeResponse(callback) {
 function handleSessionEndRequest(callback) {
     const cardTitle = "Ending Say What I Say";
 	const cardContent = "Thank you for using Say What I Say. See you next time!";
-    const speechOutput = "Thank you for using, Say What I Say. See you next time! ";
+    const speechOutput = getRandomArrayElement(exitResponses) + getRandomArrayElement(exitResponses2);
     // Setting this to true ends the session and exits the skill.
     const shouldEndSession = true;
 
@@ -121,41 +215,37 @@ function handleSessionEndRequest(callback) {
 }
 
 /**
- * This function provides the user with help
- * @param {any} intent
- * @param {any} session
- * @param {any} callback
+ * This function provides the user with help *
  */
 function getHelp(intent, session, callback) {
     const cardTitle = "Help";
-    let cardContent = "";
-    const repromptText = "To tell me a phrase, say, repeat after me, followed by your phrase. To exit, say, exit.";
+    const repromptText = "To tell me a phrase, say, repeat after me, followed by your phrase. To end this skill, say, end.";
     const sessionAttributes = {};
-    let shouldEndSession = false;
-    let speechOutput = "";
+    const shouldEndSession = false;
     const pause = "<break time='.5s' />";
-
-    speechOutput = "To hear a phrase, say, repeat after me, followed by your phrase. " + pause +
+    const speechOutput = "To hear a phrase, say, repeat after me, followed by your phrase. " + pause +
         "To repeat a phrase, say, say it <break time='.001s'/> again. " + pause +
         "You can also turn comments on, or off, by saying something like, turn comments, off. " + pause +
-        "To hear your phrase in another voice mode, say something like, say it again fast. " +
-        "Available voice modes are, fast, slow, high, low, backwards, rewind, whisper, drunk, robot, spell, and beep. " + pause +
-        "To exit this skill, say, exit. " + pause +
+        "To hear your phrase in another voice mode, say something like, say it again," +  getRandomArrayElement(modes) + ". " +
+        "For a list of voice modes, say, list voice modes." + pause +
+        "To change my accent, say something like, change accent to " + getRandomAccent() + ". " +         
+        "For a list of accents I can speak, say, list accents." + pause +
+        "To end this skill, say, end. " + pause +
         "What would you like to do?";
-    cardContent = "List of commands:\n" +
+    const cardContent = "List of commands:\n" +
         "Repeat after me, [your phrase]\n" +
         "Turn comments [on/off]\n" +
-        "Say it again [voice mode].\n\n" +
-        "List of voice modes: fast, slow, low, high, backwards, rewind, whisper, drunk, robot, spell, and beep.";
+        "Say it again [voice mode].\n" +
+        "Change accent to [name of accent].\n" +
+        "List voice modes.\n" +
+        "List accents";
 
     callback(sessionAttributes,
         buildSpeechletResponse(cardTitle, cardContent, speechOutput, repromptText, shouldEndSession));
 }
+
 /**
- * This function toggles comments to be on or off
- * @param {any} intent
- * @param {any} session
- * @param {any} callback
+ * This function toggles comments to be on or off * 
  */
 function toggleComments(intent, session, callback) {
     const cardTitle = "Comment Settings";
@@ -192,17 +282,90 @@ function toggleComments(intent, session, callback) {
         }
     }
     else {
-        speechOutput = "I didn't understand what you wanted to do with the comments.  To turn comments on, say, turn comments on. ";
+        speechOutput = "I didn't understand if you wanted comments on or off.  To turn comments on, say, turn comments on. ";
     }
         
     callback(sessionAttributes,
          buildSpeechletResponse(cardTitle, cardContent, speechOutput, repromptText, shouldEndSession));
 }
+
+/**
+ * The function says a list of available accents * 
+ */
+function sayAccents(intent, session, callback) {
+    const cardTitle = "Accent List";
+    const cardContent = "List of accents:\n" + 
+        "American, Australian, British, French, German, Italian, Japanese, and Spanish.";
+    const sessionAttributes = {};
+    const shouldEndSession = false;
+    const speechOutput = "The following are a list of accents I can speak with. " + 
+        "American, Australian, British, French, German, Italian, Japanese, and Spanish. " + 
+        "To change my accent, say something like, change to " + getRandomAccent() + ". ";
+    const repromptText = "To change my accent, say something like, change accent to " + getRandomAccent() + ". ";
+
+    callback(sessionAttributes,
+        buildSpeechletResponse(cardTitle, cardContent, speechOutput, repromptText, shouldEndSession));
+}
+
+/**
+ * The function says a list of available voice modes * 
+ */
+function sayVoiceModes(intent, session, callback) {
+    const cardTitle = "Voice Mode List";
+    const cardContent = "List of voice modes:\n" + 
+        "Fast, slow, low, high, backwards, rewind, whisper, drunk, robot, spell, and beep.";
+    const sessionAttributes = {};
+    const shouldEndSession = false;
+    const speechOutput = "The following are a list of voice modes. " +
+        "fast, slow, high, low, backwards, rewind, whisper, drunk, robot, spell, and beep. " + 
+        "To hear your phrase in another voice mode, say something like, say it again, " + getRandomArrayElement(modes) + ". ";
+    const repromptText = "To hear your phrase in another voice mode, say something like, say it again, " + getRandomArrayElement(modes) + ". ";
+
+    callback(sessionAttributes,
+        buildSpeechletResponse(cardTitle, cardContent, speechOutput, repromptText, shouldEndSession));
+}
+
+/**
+* This function changes the accent
+*/
+function changeAccent(intent, session, callback){
+    const cardTitle = "Changing Accent";
+	let cardContent = "";
+    const repromptText = "To change an accent, say something like, change accent to, " + getRandomAccent() + ".  For help, say, help. ";
+    const sessionAttributes = {};
+    const accentSlot = intent.slots.Accent
+    const newAccent = getERSlotValue(intent.slots.Accent);
+    let shouldEndSession = false;
+    let speechOutput = "";
+    
+    if (newAccent) {
+        let accentName = accents[newAccent]
+        if (accentName != undefined){
+            setVoiceTags(accentName);
+            currentAccent = accentName;
+            speechOutput = "Accent has been changed to " + newAccent + ". " + tellPhrase;
+            cardContent = "Accent has been changed to " + newAccent + ". "
+        }      
+        else{
+            speechOutput = "I don't think I know how to speak in, " + accentSlot.value +
+                ".  Please try a different accent by saying something like, change accent to, " + getRandomAccent() + ". ";
+            cardContent = "The following are a list of available accents I can speak: \n" + 
+                "American, Australian, British, French, German, Italian, Japanese, and Spanish.";
+        }        
+    }
+    else{
+        speechOutput = "I didn't understand which accent you wanted. To change accents, say, change accent to, " +
+            "followed by the name of the accent.  For a list of accents, say, list accents. ";
+        cardContent = "I didn't understand which accent you wanted.\n To change accents, say, change accent to, " +
+        "followed by the name of the accent.  For a list of accents, say, list accents. "
+    }
+    
+    callback(sessionAttributes,
+        buildSpeechletResponse(cardTitle, cardContent, speechOutput, repromptText, shouldEndSession));
+}
+
 /**
  * This function repeats a phrase
- * @param {any} intent
- * @param {any} session
- * @param {any} callback
  */
 function sayPhrase(intent, session, callback){
 	const cardTitle = "Repeating your phrase";
@@ -213,10 +376,11 @@ function sayPhrase(intent, session, callback){
 	let shouldEndSession = false;
     let speechOutput = "";
     let startPhrase = "Your phrase is <break time='.5s'/>";
-    let endPhrase = "<break time='1s'/>" + getRandomResponse(endResponse);
+    let endPhrase = "<break time='1s'/>" + "To hear the phrase again with a different voice mode, say something like, say it again," +
+    getRandomArrayElement(modes) + ". To end this skill, say, end. ";
 
     if (randomRemarks) {
-        startPhrase = getRandomResponse(preResponse) + getRandomResponse(preResponse2) + " <break time='.5s'/>";
+        startPhrase = getRandomArrayElement(preResponse) + getRandomArrayElement(preResponse2) + " <break time='.5s'/>";
         
     }
     else {
@@ -239,16 +403,14 @@ function sayPhrase(intent, session, callback){
     callback(sessionAttributes,
          buildSpeechletResponse(cardTitle, cardContent, speechOutput, repromptText, shouldEndSession));	
 }
+
 /**
  * This function repeats the last phrase in different voice modes
- * @param {any} intent
- * @param {any} session
- * @param {any} callback
  */
 function sayAgain(intent, session, callback){
 	const cardTitle = "Saying the last phrase";
 	let cardContent = "";
-    const repromptText = "To hear the phrase again, say, say it <break time='.001s'/> again.  To exit, say, exit. ";
+    const repromptText = "To hear the phrase again, say, say it <break time='.001s'/> again.  To end this skill, say, end. ";
     const sessionAttributes = {};
 	const modeSlot = intent.slots.Mode;
     let shouldEndSession = false;
@@ -257,13 +419,21 @@ function sayAgain(intent, session, callback){
     let tempPhrase = "";
     let startPhrase;
 
-    startPhrase = getRandomResponse(preResponse2) + " <break time='.5s'/>";
+    startPhrase = getRandomArrayElement(preResponse2);
         
 	const endPhrase = "<break time='.5s'/> To say another phrase, " +
 		"say, repeat after me, followed by your phrase. ";
 	
 	if(modeSlot){	
 		speakAgainMode = modeSlot.value;
+
+        if (speakAgainMode == "random") {
+            speakAgainMode = getRandomArrayElement(modes);
+        }
+
+        if (speakAgainMode !== undefined) {
+            startPhrase += "in " + speakAgainMode + " mode. " + " <break time='.5s'/>";
+        }
 
         if (lastPhrase == "") {
             speechOutput = "I don't remember the last phrase. " + tellPhrase;
@@ -316,6 +486,13 @@ function sayAgain(intent, session, callback){
                     tempPhrase = addBeeps(lastPhrase);
                     speechOutput = startPhrase + tempPhrase + endPhrase;
                     break;
+                case "valley girl":
+                case "valley speak":
+                case "like":
+                case "valley":
+                    tempPhrase = addFiller(lastPhrase, valleyFillerWords);
+                    speechOutput = startPhrase + tempPhrase + endPhrase;
+                        break;
                 case "robot":
                     tempPhrase = robot(lastPhrase);
                     speechOutput = startPhrase + tempPhrase + endPhrase;
@@ -327,6 +504,8 @@ function sayAgain(intent, session, callback){
                     tempPhrase = spellOut(lastPhrase, true);
                     speechOutput = startPhrase + tempPhrase + endPhrase;
                     break;
+                case "spell one":
+                case "spell 1":
                 case "spell random":
                 case "spell longest":
                 case "spell longest word":
@@ -395,6 +574,12 @@ function onIntent(intentRequest, session, callback) {
         sayAgain(intent, session, callback);
     } else if (intentName === 'CommentSettingsIntent') {
         toggleComments(intent, session, callback);
+    } else if (intentName === 'ChangeAccentIntent') {
+        changeAccent(intent, session, callback);
+    } else if (intentName === 'ListVoiceModeIntent') {
+        sayVoiceModes(intent, session, callback);
+    } else if (intentName === 'ListAccentIntent') {
+        sayAccents(intent, session, callback);
     } else if (intentName === 'AMAZON.HelpIntent') {
         getHelp(intent, session, callback);
     } else if (intentName === 'AMAZON.StopIntent' || intentName === 'AMAZON.CancelIntent') {
@@ -459,8 +644,55 @@ exports.handler = (event, context, callback) => {
 
 // ----------------- Helper functions for speech ---------------
 /**
+ * This function uses entity resolution to get a slot value
+ * If a slot synonym is found the named slot value is returned
+ * If using slots by id, set useId to true
+ * Original code found on stackoverflow:
+ * https://stackoverflow.com/questions/48638353/how-to-handle-synonyms-in-intents-in-alexa
+ * @param {String} slot
+ * @param {bool} useId 
+ * @return {String} the slot value
+ */
+function getERSlotValue(slot, useId){
+    let value = slot.value;
+    let resolution = (slot.resolutions && slot.resolutions.resolutionsPerAuthority && slot.resolutions.resolutionsPerAuthority.length > 0) ? slot.resolutions.resolutionsPerAuthority[0] : null;
+    if(resolution && resolution.status.code == 'ER_SUCCESS_MATCH'){
+        let resolutionValue = resolution.values[0].value;
+        value = resolutionValue.id && useId ? resolutionValue.id : resolutionValue.name;
+    }
+    return value;
+}
+
+/**
+ * This function sets the opening and closing voice tags to a targeted name
+ * to obtain a particular accent, reference Amazon Polly
+ * @param {String} name 
+ */
+function setVoiceTags(name){
+    if (name == "default" || name == ""){
+        voiceTag = "";
+        voiceTagClose = "";
+    }
+    else{
+        voiceTag = "<voice name ='" + name + "'>";
+        voiceTagClose = "</voice>";
+    }
+}
+
+/**
+ * Returns a random accent from the accents array
+ * 
+ */
+function getRandomAccent(){
+    let accentTypes = Object.keys(accents);
+    let i = Math.floor(Math.random() * accentTypes.length);
+    return accentTypes[i];
+}
+
+/**
  * This function adds pauses between the words
  * @param {String array} p
+ * @return {String} The phrase with pauses added
  */
 function addPauses(p) {
     let sentence = "";
@@ -472,9 +704,11 @@ function addPauses(p) {
     }
     return sentence;
 }
+
 /**
  * This function flips each of the words so that the sentence is backwards
  * @param {String array} p
+ * @return {String} The phrase flipped backwards
  */
 function flipBackwards(p){
 	let sentence = "";
@@ -486,9 +720,11 @@ function flipBackwards(p){
 	}	
 	return sentence;
 }
+
 /**
  * This function reverses the entire sentence
  * @param {String array} p
+ * @return {String} The phrase reversed
  */
 function reversePhrase(p){
 	let sentence = "";
@@ -500,9 +736,11 @@ function reversePhrase(p){
 	}	
 	return sentence;
 }
+
 /**
  *This function beeps out random words
  * @param {String array} p
+ * @return {String} The phrase with beep tags added
  */
 function addBeeps(p){
 	let sentence = "";
@@ -559,10 +797,70 @@ function addBeeps(p){
     }
     return sentence;		
 }
+
+/**
+ * This function adds filler words from an array to the original phrase
+ * @param {String} p 
+ * @param {String Array} fillers - an array of filler words
+ * @return {String} The new phrase with added filler words
+ */
+function addFiller(p, fillers) {
+    let sentence = "";
+    let words = p.split(" ");
+    const wordCount = words.length;
+    let numInserts;
+    let insertWordIndex = [];
+
+    // Set the number of words to be inserted
+    if (wordCount > 2 && wordCount <= 4) {
+        numInserts = 1;
+    }
+    else if (wordCount > 4 && wordCount <= 15) {
+        numInserts = Math.floor(Math.random() * 3) + 1;
+    }
+    else if (wordCount > 15) {
+        numInserts = Math.floor(Math.random() * 5) + 1;
+    }
+    else {
+        numInserts = 0;
+    }
+
+    // Create a matrix to store the index of the random inserted words
+    if (numInserts > 0) {
+        let index = 0;
+
+        for (let i = 0; i < numInserts; i++) {
+            // Set to a random word
+            index = Math.floor(Math.random() * (wordCount - 1));
+            // If the array already contains the index number, find a new one
+            if (insertWordIndex.includes(index)) {
+                index = findUniqueOrder(insertWordIndex, wordCount);
+                insertWordIndex[i] = index;
+            }
+            else {
+                insertWordIndex[i] = index;
+            }
+        }
+    }
+
+    for (let i = 0; i < wordCount; i++) {
+        let fillerWord = getRandomArrayElement(fillers) + ", ";
+        // If the current index is in the insert word index array, add the word
+        if (insertWordIndex.includes(i)) {
+            sentence += fillerWord + words[i] + " ";
+        }
+        else {
+            sentence += words[i] + " ";
+        }
+    }
+    return sentence;
+}
+
 /**
  * This function changes the pitch of each word in the sentence
  * to create a robotic like voice
  * @param {String array} p
+ * @return {String} The modified phrase with added tags
  */
 function robot(p){
 	let sentence = "";
@@ -586,6 +884,11 @@ function robot(p){
 	return sentence;
 }
 
+/**
+ * This recursive function finds 
+ * @param {Array} orderArray 
+ * @param {Int} wordCount 
+ */
 function findUniqueOrder(orderArray, wordCount){
 	let order;
 	
@@ -603,6 +906,7 @@ function findUniqueOrder(orderArray, wordCount){
  * @param {String array} p
  * @param {Bool} spellAll, If true, will spell out all the words,
  * if false, will spell out only the first longest word
+ * @return {String} The phrase with spaces between each letter
  */
 function spellOut(p, spellAll){
 	let sentence = "";
@@ -660,12 +964,13 @@ function spellOut(p, spellAll){
 }
 
 /**
- * This function chooses a random response from an array
- * @param {String array} responses, an array of response strings
+ * This function chooses a random element from an array
+ * @param {any array} e, an array with elements
+ * @return {any} a random element from the array
  */
-function getRandomResponse(responses) {
-    let i = Math.floor(Math.random() * responses.length);
-    return responses[i];
+function getRandomArrayElement(e) {
+    let i = Math.floor(Math.random() * e.length);
+    return e[i];
 }
  
 /**
@@ -674,6 +979,7 @@ function getRandomResponse(responses) {
  * @param {int} min, the minimum value
  * @param {int} max, the maximum value
  * @param {Bool} negative, if the pitch should be negative or positive
+ * @return {String} A randomized pitch value with a tag
  */
 function getRandomPitch(min, max, negative) {    
     // Set a random percent between the max and min value
@@ -688,10 +994,12 @@ function getRandomPitch(min, max, negative) {
 
     return setPitch(p);
 }
+
 /**
  * This function returns the prosody tag with a given percentage
  * @param {String} percent, a string with a value of +XX% or -XX%
  * between +30% and -30%
+ * @return {String} A tag with an added value
  */
 function setPitch(percent) {
     let sign = "";
@@ -711,6 +1019,7 @@ function setPitch(percent) {
  * This function returns the prosody tag with a given percentage
  * @param {String} percent, a string with a value of XX%
  * between 20% and 200%
+ * @return {String} A tag with an added value
  */
 function setRate(percent) {
     return "<prosody rate='" + percent + "%'>";
