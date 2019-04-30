@@ -1,0 +1,627 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "say what i say",
+            "intents": [
+                {
+                    "name": "SayPhraseIntent",
+                    "slots": [
+                        {
+                            "name": "Phrase",
+                            "type": "LIST_OF_PHRASES"
+                        }
+                    ],
+                    "samples": [
+                        "repeat phrase {Phrase}",
+                        "repeat my words {Phrase}",
+                        "repeat this phrase {Phrase}",
+                        "repeat what i say {Phrase}",
+                        "repeat after me {Phrase}"
+                    ]
+                },
+                {
+                    "name": "RepeatIntent",
+                    "slots": [
+                        {
+                            "name": "Mode",
+                            "type": "LIST_OF_MODES"
+                        }
+                    ],
+                    "samples": [
+                        "say it again",
+                        "say my phrase {Mode}",
+                        "say again {Mode}",
+                        "say it again {Mode}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "Help"
+                    ]
+                },
+                {
+                    "name": "CommentSettingsIntent",
+                    "slots": [
+                        {
+                            "name": "OnOff",
+                            "type": "ON_OFF"
+                        }
+                    ],
+                    "samples": [
+                        "Turn {OnOff} comments"
+                    ]
+                },
+                {
+                    "name": "ChangeAccentIntent",
+                    "slots": [
+                        {
+                            "name": "Accent",
+                            "type": "LIST_OF_ACCENTS"
+                        }
+                    ],
+                    "samples": [
+                        "Talk as {Accent}",
+                        "Speak as {Accent}",
+                        "Speak in {Accent}",
+                        "Switch accent to {Accent}",
+                        "Change accent to {Accent}"
+                    ]
+                },
+                {
+                    "name": "ListAccentIntent",
+                    "slots": [],
+                    "samples": [
+                        "List accent",
+                        "How do you change accents",
+                        "Tell me about accents",
+                        "List accents"
+                    ]
+                },
+                {
+                    "name": "ListVoiceModeIntent",
+                    "slots": [],
+                    "samples": [
+                        "List voices",
+                        "List modes",
+                        "List voice modes",
+                        "How do you change voice modes",
+                        "Tell me about voice modes"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                }
+            ],
+            "types": [
+                {
+                    "name": "LIST_OF_PHRASES",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "i am the best"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "you are the best"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "i like to play games"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "down"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "hello world"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "i like you"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "this is a super long phrase that no one will say"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "there are two peas in a pod"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "the sky is blue and the clouds are gray"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "i see dead people"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "anything is possible"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "something just bit me"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "LIST_OF_MODES",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "valley speak"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "like"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "valley girl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "valley"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "random"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "spell longest"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "spell longest word"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "spell random"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "sensor"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "censor"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "slower"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "slowly"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "quick"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "faster"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "quickly"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "softly"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "soft"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "lower"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "higher"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "spelled out"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "spell out"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "beeped"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "slur"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "drunk"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "beep"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "spell"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "high"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "low"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "whisper"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "robot"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "fast"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "slow"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "reverse",
+                                "synonyms": [
+                                    "rewind"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "backwards"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "normal"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "default"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ON_OFF",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Off"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "On"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "LIST_OF_ACCENTS",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Alexa",
+                                "synonyms": [
+                                    "regular",
+                                    "original",
+                                    "normal",
+                                    "default"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Italian female",
+                                "synonyms": [
+                                    "italian lady",
+                                    "italian chick",
+                                    "italian woman",
+                                    "italian girl",
+                                    "Italian"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Italian male",
+                                "synonyms": [
+                                    "italian mail",
+                                    "italian dude",
+                                    "italian guy",
+                                    "italian man"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Indian female",
+                                "synonyms": [
+                                    "indian",
+                                    "indian chick",
+                                    "indian girl",
+                                    "indian woman"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Indian female two",
+                                "synonyms": [
+                                    "indian woman two",
+                                    "indian girl two",
+                                    "indian female to",
+                                    "indian female 2"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "girl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "boy",
+                                "synonyms": [
+                                    "kid"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "French female",
+                                "synonyms": [
+                                    "french lady",
+                                    "French",
+                                    "French woman",
+                                    "French chick",
+                                    "French girl"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "French male",
+                                "synonyms": [
+                                    "french mail",
+                                    "French dude",
+                                    "French man",
+                                    "French guy"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Japanese female",
+                                "synonyms": [
+                                    "japanese lady",
+                                    "Japanese",
+                                    "Japanese woman",
+                                    "Japanese chick",
+                                    "Japanese girl"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Japanese male",
+                                "synonyms": [
+                                    "japanese mail",
+                                    "Japanese guy",
+                                    "Japaneses dude",
+                                    "Japanese man"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Spanish female",
+                                "synonyms": [
+                                    "spanish lady",
+                                    "Spanish",
+                                    "Spanish chick",
+                                    "Spanish woman",
+                                    "Spanish girl"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Spanish male",
+                                "synonyms": [
+                                    "spanish mail",
+                                    "Spanish dude",
+                                    "Spanish man",
+                                    "Spanish guy"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "German female",
+                                "synonyms": [
+                                    "german lady",
+                                    "german",
+                                    "german woman",
+                                    "german girl",
+                                    "german chick"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "German male",
+                                "synonyms": [
+                                    "german mail",
+                                    "german guy",
+                                    "german man",
+                                    "german dude"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Australian female",
+                                "synonyms": [
+                                    "australian lady",
+                                    "australian",
+                                    "aussie",
+                                    "aussie chick",
+                                    "australian chick",
+                                    "aussie girl",
+                                    "aussie female",
+                                    "aussie girl",
+                                    "australian woman",
+                                    "australian girl"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Australian male",
+                                "synonyms": [
+                                    "aussie dude",
+                                    "australian mail",
+                                    "australian dude",
+                                    "australian guy",
+                                    "australian man",
+                                    "aussie man",
+                                    "aussie male",
+                                    "aussie guy"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "British female",
+                                "synonyms": [
+                                    "british lady",
+                                    "british chick",
+                                    "british woman",
+                                    "british girl",
+                                    "british"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "British male",
+                                "synonyms": [
+                                    "british mail",
+                                    "british dude",
+                                    "british guy",
+                                    "british man"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "American male",
+                                "synonyms": [
+                                    "u s mail",
+                                    "u s male",
+                                    "mail",
+                                    "male",
+                                    "american mail",
+                                    "american dude",
+                                    "american man",
+                                    "american guy"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "American female",
+                                "synonyms": [
+                                    "female",
+                                    "u s female",
+                                    "american lady",
+                                    "american chick",
+                                    "american woman",
+                                    "american girl",
+                                    "american"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
