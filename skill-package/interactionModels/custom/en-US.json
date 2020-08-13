@@ -1,0 +1,1219 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "say what i say",
+      "intents": [
+        {
+          "name": "SayPhraseIntent",
+          "slots": [
+            {
+              "name": "phrase",
+              "type": "AMAZON.SearchQuery",
+              "samples": [
+                "{phrase}"
+              ]
+            }
+          ],
+          "samples": [
+            "repeat my lines {phrase}",
+            "say my lines {phrase}",
+            "repeat a sentence {phrase}",
+            "repeat a phrase {phrase}",
+            "repeat this sentence {phrase}",
+            "say this sentence {phrase}",
+            "echo me {phrase}",
+            "say my line {phrase}",
+            "say my sentence {phrase}",
+            "say my words {phrase}",
+            "repeat my sentence {phrase}",
+            "repeat my line {phrase}",
+            "say a line {phrase}",
+            "repeat this {phrase}",
+            "say this {phrase}",
+            "say what i say {phrase}",
+            "say a phrase {phrase}",
+            "say my phrase {phrase}",
+            "say the phrase {phrase}",
+            "repeat phrase {phrase}",
+            "repeat my words {phrase}",
+            "repeat this phrase {phrase}",
+            "repeat what i say {phrase}",
+            "repeat after me {phrase}",
+            "repeat my lines",
+            "say my lines",
+            "repeat a sentence",
+            "repeat a phrase",
+            "repeat this sentence",
+            "say this sentence",
+            "echo me",
+            "say my line",
+            "say my sentence",
+            "say my words",
+            "say a line",
+            "say this",
+            "say what i say",
+            "say a phrase",
+            "say my phrase",
+            "repeat my words",
+            "repeat this phrase",
+            "repeat what i say",
+            "repeat after me"
+          ]
+        },
+        {
+          "name": "SayAgainIntent",
+          "slots": [
+            {
+              "name": "mode",
+              "type": "LIST_OF_MODES"
+            }
+          ],
+          "samples": [
+            "say the last phrase {mode}",
+            "say the last phrase",
+            "what was the last phrase",
+            "repeat last phrase {mode}",
+            "repeat last phrase",
+            "repeat the last phrase {mode}",
+            "repeat the last phrase",
+            "say that again {mode}",
+            "say that again",
+            "repeat",
+            "repeat in {mode}",
+            "repeat my phrase in {mode}",
+            "repeat my last phrase in {mode} mode",
+            "repeat my last phrase in {mode}",
+            "repeat my phrase in {mode} mode",
+            "say again in {mode} speed",
+            "say that again in {mode} mode",
+            "say that again in {mode}",
+            "say it again",
+            "say my phrase {mode}",
+            "say again {mode}",
+            "say it again {mode}"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "Help"
+          ]
+        },
+        {
+          "name": "ToggleCommentsIntent",
+          "slots": [
+            {
+              "name": "onOff",
+              "type": "ON_OFF"
+            }
+          ],
+          "samples": [
+            "comments {onOff}",
+            "turn comments {onOff}",
+            "turn {onOff} the comments",
+            "switch the comments {onOff}",
+            "turn the comments {onOff}",
+            "Turn {onOff} comments"
+          ]
+        },
+        {
+          "name": "ToggleHintsIntent",
+          "slots": [
+            {
+              "name": "onOff",
+              "type": "ON_OFF"
+            }
+          ],
+          "samples": [
+            "hints {onOff}",
+            "turn hints {onOff}",
+            "turn {onOff} the hints",
+            "switch the hints {onOff}",
+            "turn the hints {onOff}",
+            "Turn {onOff} hints"
+          ]
+        },
+        {
+          "name": "ChangeAccentIntent",
+          "slots": [
+            {
+              "name": "accent",
+              "type": "LIST_OF_ACCENTS"
+            }
+          ],
+          "samples": [
+            "modify accent to {accent}",
+            "accent to {accent}",
+            "accent in {accent}",
+            "change your accent to {accent}",
+            "speak to me as {accent}",
+            "talk as {accent}",
+            "talk in a different accent {accent}",
+            "speak as {accent}",
+            "speak in {accent}",
+            "switch accent to {accent}",
+            "change accent to {accent}",
+            "switch accent {accent}",
+            "change accent {accent}",
+            "switch accents {accent}",
+            "change accents {accent}",
+            "switch the accent {accent}",
+            "switch the voice {accent}",
+            "switch the accents {accent}",
+            "switch the voices {accent}",
+            "change the accent {accent}",
+            "change the voice {accent}",
+            "change the accents {accent}",
+            "change the voices {accent}"
+          ]
+        },
+        {
+          "name": "SayAccentsIntent",
+          "slots": [],
+          "samples": [
+            "how many voices do you have",
+            "how do you change voices",
+            "what are your list of accents",
+            "accents that you have",
+            "accents you have",
+            "how many accents do you have",
+            "which accents can i change to",
+            "what accents can i change to",
+            "what are your accents",
+            "which accents do you have",
+            "accent list please",
+            "what accents do you have",
+            "what all accents do you have",
+            "what all accents you have",
+            "List accent",
+            "How do you change accents",
+            "Tell me about accents",
+            "List accents"
+          ]
+        },
+        {
+          "name": "SayVoiceModesIntent",
+          "slots": [],
+          "samples": [
+            "what are the different voices",
+            "tell me about your voice modes",
+            "what other voices do you have",
+            "what are the modes",
+            "how many ways can you speak",
+            "how many ways can you talk",
+            "how else can you talk",
+            "list the modes you have",
+            "list your voices",
+            "what are the voice modes",
+            "which voices do you have",
+            "List voices",
+            "List modes",
+            "List voice modes",
+            "How do you change voice modes",
+            "Tell me about voice modes"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "i am the best"
+              }
+            },
+            {
+              "name": {
+                "value": "you are the best"
+              }
+            },
+            {
+              "name": {
+                "value": "i like to play games"
+              }
+            },
+            {
+              "name": {
+                "value": "down"
+              }
+            },
+            {
+              "name": {
+                "value": "hello world"
+              }
+            },
+            {
+              "name": {
+                "value": "i like you"
+              }
+            },
+            {
+              "name": {
+                "value": "this is a super long phrase that no one will say"
+              }
+            },
+            {
+              "name": {
+                "value": "there are two peas in a pod"
+              }
+            },
+            {
+              "name": {
+                "value": "the sky is blue and the clouds are gray"
+              }
+            },
+            {
+              "name": {
+                "value": "i see dead people"
+              }
+            },
+            {
+              "name": {
+                "value": "anything is possible"
+              }
+            },
+            {
+              "name": {
+                "value": "something just bit me"
+              }
+            }
+          ],
+          "name": "LIST_OF_PHRASES"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "random",
+                "synonyms": [
+                  "any"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "valley girl",
+                "synonyms": [
+                  "valley",
+                  "like",
+                  "valley speak"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "spell random",
+                "synonyms": [
+                  "spell longest word",
+                  "spell longest",
+                  "spell one"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "drunk",
+                "synonyms": [
+                  "slur"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "beep",
+                "synonyms": [
+                  "profanity",
+                  "censor",
+                  "sensor",
+                  "beeped"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "spell",
+                "synonyms": [
+                  "spell out",
+                  "spelled out",
+                  "spelled"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "high",
+                "synonyms": [
+                  "higher"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "low",
+                "synonyms": [
+                  "lower"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "whisper",
+                "synonyms": [
+                  "softly",
+                  "soft"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "robot",
+                "synonyms": [
+                  "machine"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "fast",
+                "synonyms": [
+                  "quicker",
+                  "quickly",
+                  "quick",
+                  "fastly",
+                  "faster"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "slow",
+                "synonyms": [
+                  "slower",
+                  "slowly"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "reverse",
+                "synonyms": [
+                  "rewind"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "backwards",
+                "synonyms": [
+                  "backward"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "default",
+                "synonyms": [
+                  "regular",
+                  "normal"
+                ]
+              }
+            }
+          ],
+          "name": "LIST_OF_MODES"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "Off"
+              }
+            },
+            {
+              "name": {
+                "value": "On"
+              }
+            }
+          ],
+          "name": "ON_OFF"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "random",
+                "synonyms": [
+                  "another",
+                  "something else",
+                  "another voice",
+                  "another accent",
+                  "something different",
+                  "anything",
+                  "any"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Alexa",
+                "synonyms": [
+                  "alexa",
+                  "regular",
+                  "original",
+                  "normal",
+                  "default"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Bianca",
+                "synonyms": [
+                  "italian female",
+                  "italian lady",
+                  "italian chick",
+                  "italian woman",
+                  "italian girl",
+                  "Italian",
+                  "italy female",
+                  "italy lady",
+                  "italy chick",
+                  "italy woman",
+                  "italy girl",
+                  "italy"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Carla",
+                "synonyms": [
+                  "italian female two",
+                  "italian lady two",
+                  "italian chick two",
+                  "italian woman two",
+                  "italian girl two",
+                  "Italian two",
+                  "italy female two",
+                  "italy lady two",
+                  "italy chick two",
+                  "italy woman two",
+                  "italy girl two",
+                  "italy two"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Giorgio",
+                "synonyms": [
+                  "italian male",
+                  "italian mail",
+                  "italian dude",
+                  "italian guy",
+                  "italian man",
+                  "italy male",
+                  "italy mail",
+                  "italy dude",
+                  "italy guy",
+                  "italy man"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Aditi",
+                "synonyms": [
+                  "indian female",
+                  "indian",
+                  "indian chick",
+                  "indian girl",
+                  "indian woman",
+                  "hindi female",
+                  "hindi",
+                  "hindi chick",
+                  "hindi girl",
+                  "hindi woman"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Raveena",
+                "synonyms": [
+                  "indian two",
+                  "indian female two",
+                  "indian woman two",
+                  "indian girl two",
+                  "indian female to",
+                  "indian female 2",
+                  "hindi two",
+                  "hindi female two",
+                  "hindi woman two",
+                  "hindi girl two",
+                  "hindi female to",
+                  "hindi female 2"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Ivy",
+                "synonyms": [
+                  "girl",
+                  "american girl",
+                  "u. s. girl",
+                  "US girl",
+                  "little girl",
+                  "small girl"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Justin",
+                "synonyms": [
+                  "boy",
+                  "american boy",
+                  "u. s. boy",
+                  "US boy",
+                  "little boy",
+                  "small boy",
+                  "kid",
+                  "little kid",
+                  "small kid",
+                  "child",
+                  "little child",
+                  "small child"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Chantal",
+                "synonyms": [
+                  "canadian female",
+                  "canadian lady",
+                  "canadian",
+                  "canadian woman",
+                  "canadian chick",
+                  "canadian girl",
+                  "canada female",
+                  "canada lady",
+                  "canada",
+                  "canada woman",
+                  "canada chick",
+                  "canada girl",
+                  "french female three",
+                  "french lady three",
+                  "french three",
+                  "french woman three",
+                  "french chick three",
+                  "french girl three"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Celine",
+                "synonyms": [
+                  "french female",
+                  "french lady",
+                  "french",
+                  "french woman",
+                  "french chick",
+                  "french girl"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Lea",
+                "synonyms": [
+                  "french female two",
+                  "french lady two",
+                  "french two",
+                  "french woman two",
+                  "french chick two",
+                  "french girl two"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Mathieu",
+                "synonyms": [
+                  "french male",
+                  "french mail",
+                  "French dude",
+                  "French man",
+                  "French guy"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Mizuki",
+                "synonyms": [
+                  "japanese lady",
+                  "japanese",
+                  "japanese female",
+                  "japanese woman",
+                  "japanese chick",
+                  "japanese girl",
+                  "japan lady",
+                  "japan",
+                  "japan female",
+                  "japan woman",
+                  "japan chick",
+                  "japan girl"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Takumi",
+                "synonyms": [
+                  "japanese dude",
+                  "japanese mail",
+                  "japanese male",
+                  "japanese guy",
+                  "japanese man",
+                  "japan dude",
+                  "japan mail",
+                  "japan male",
+                  "japan guy",
+                  "japan man"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Ricardo",
+                "synonyms": [
+                  "portuguese male",
+                  "portuguese dude",
+                  "portuguese guy",
+                  "portuguese man",
+                  "portuguese mail",
+                  "brazillian male",
+                  "brazillian dude",
+                  "brazillian guy",
+                  "brazillian man",
+                  "brazillian mail",
+                  "brazil male",
+                  "brazil dude",
+                  "brazil guy",
+                  "brazil man",
+                  "brazil mail"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Camila",
+                "synonyms": [
+                  "portuguese female",
+                  "portuguese lady",
+                  "portuguese",
+                  "portuguese chick",
+                  "portuguese woman",
+                  "portuguese girl",
+                  "brazillian female",
+                  "brazillian lady",
+                  "brazillian",
+                  "brazillian chick",
+                  "brazillian woman",
+                  "brazillian girl",
+                  "brazil female",
+                  "brazil lady",
+                  "brazil",
+                  "brazil chick",
+                  "brazil woman",
+                  "brazil girl"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Vitoria",
+                "synonyms": [
+                  "portuguese female two",
+                  "portuguese lady two",
+                  "portuguese two",
+                  "portuguese chick two",
+                  "portuguese woman two",
+                  "portuguese girl two",
+                  "brazillian female two",
+                  "brazillian lady two",
+                  "brazillian two",
+                  "brazillian chick two",
+                  "brazillian woman two",
+                  "brazillian girl two",
+                  "brazil female two",
+                  "brazil lady two",
+                  "brazil two",
+                  "brazil chick two",
+                  "brazil woman two",
+                  "brazil girl two"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Conchita",
+                "synonyms": [
+                  "spanish female",
+                  "spanish lady",
+                  "spanish",
+                  "spanish chick",
+                  "spanish woman",
+                  "spanish girl"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Lucia",
+                "synonyms": [
+                  "spanish female two",
+                  "spanish lady two",
+                  "spanish two",
+                  "spanish chick two",
+                  "spanish woman two",
+                  "spanish girl two"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Lupe",
+                "synonyms": [
+                  "spanish female three",
+                  "spanish lady three",
+                  "spanish three",
+                  "spanish chick three",
+                  "spanish woman three",
+                  "spanish girl three"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Penelope",
+                "synonyms": [
+                  "spanish female four",
+                  "spanish lady four",
+                  "spanish four",
+                  "spanish chick four",
+                  "spanish woman four",
+                  "spanish girl four"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Mia",
+                "synonyms": [
+                  "spanish female five",
+                  "spanish lady five",
+                  "spanish five",
+                  "spanish chick five",
+                  "spanish woman five",
+                  "spanish girl five"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Enrique",
+                "synonyms": [
+                  "spanish male",
+                  "spanish mail",
+                  "spanish dude",
+                  "spanish man",
+                  "spanish guy"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Miguel",
+                "synonyms": [
+                  "spanish male two",
+                  "spanish mail two",
+                  "spanish dude two",
+                  "spanish man two",
+                  "spanish guy two"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Marlene",
+                "synonyms": [
+                  "german female",
+                  "german lady",
+                  "german",
+                  "german woman",
+                  "german girl",
+                  "german chick",
+                  "germany female",
+                  "germany lady",
+                  "germany",
+                  "germany woman",
+                  "germany girl",
+                  "germany chick"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Vicki",
+                "synonyms": [
+                  "german female two",
+                  "german lady two",
+                  "german two",
+                  "german woman two",
+                  "german girl two",
+                  "german chick two",
+                  "germany female two",
+                  "germany lady two",
+                  "germany two",
+                  "germany woman two",
+                  "germany girl two",
+                  "germany chick two"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Hans",
+                "synonyms": [
+                  "german male",
+                  "german mail",
+                  "german guy",
+                  "german man",
+                  "german dude",
+                  "germany male",
+                  "germany mail",
+                  "germany guy",
+                  "germany man",
+                  "germany dude"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Nicole",
+                "synonyms": [
+                  "aussie",
+                  "aussie female",
+                  "aussie lady",
+                  "aussie girl",
+                  "aussie chick",
+                  "aussie woman",
+                  "australian",
+                  "australian female",
+                  "australian lady",
+                  "australian chick",
+                  "australian woman",
+                  "australian girl",
+                  "australia",
+                  "australia female",
+                  "australia lady",
+                  "australia chick",
+                  "australia woman",
+                  "australia girl",
+                  "down under",
+                  "down under female",
+                  "down under lady",
+                  "down under chick",
+                  "down under woman",
+                  "down under girl"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Russell",
+                "synonyms": [
+                  "aussie male",
+                  "aussie mail",
+                  "aussie man",
+                  "aussie guy",
+                  "aussie dude",
+                  "australian male",
+                  "australian mail",
+                  "australian dude",
+                  "australian guy",
+                  "australian man",
+                  "australia male",
+                  "australia mail",
+                  "australia dude",
+                  "australia guy",
+                  "australia man",
+                  "down under male",
+                  "down under mail",
+                  "down under dude",
+                  "down under guy",
+                  "down under man"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Amy",
+                "synonyms": [
+                  "british female",
+                  "british lady",
+                  "british chick",
+                  "british woman",
+                  "british girl",
+                  "british",
+                  "UK female",
+                  "UK lady",
+                  "UK chick",
+                  "UK woman",
+                  "UK girl",
+                  "UK",
+                  "u. k. female",
+                  "u. k. lady",
+                  "u. k. chick",
+                  "u. k. woman",
+                  "u. k. girl",
+                  "u. k."
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Emma",
+                "synonyms": [
+                  "british female two",
+                  "british lady two",
+                  "british chick two",
+                  "british woman two",
+                  "british girl two",
+                  "british two",
+                  "UK female two",
+                  "UK lady two",
+                  "UK chick two",
+                  "UK woman two",
+                  "UK girl two",
+                  "UK two",
+                  "u. k. female two",
+                  "u. k. lady two",
+                  "u. k. chick two",
+                  "u. k. woman two",
+                  "u. k. girl two",
+                  "u. k. two"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Brian",
+                "synonyms": [
+                  "british male",
+                  "british mail",
+                  "british dude",
+                  "british guy",
+                  "british man",
+                  "UK male",
+                  "UK mail",
+                  "UK dude",
+                  "UK guy",
+                  "UK man",
+                  "u. k. male",
+                  "u. k. mail",
+                  "u. k. dude",
+                  "u. k. guy",
+                  "u. k. man"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Joey",
+                "synonyms": [
+                  "US male",
+                  "US mail",
+                  "u. s. male",
+                  "u. s. mail",
+                  "mail",
+                  "male",
+                  "american male",
+                  "american mail",
+                  "american dude",
+                  "american man",
+                  "american guy"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Matthew",
+                "synonyms": [
+                  "US male two",
+                  "US mail two",
+                  "u. s. male two",
+                  "u. s. mail two",
+                  "mail two",
+                  "male two",
+                  "american male two",
+                  "american mail two",
+                  "american dude two",
+                  "american man two",
+                  "american guy two"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Joanna",
+                "synonyms": [
+                  "US female",
+                  "u. s. female",
+                  "female",
+                  "american lady",
+                  "american chick",
+                  "american woman",
+                  "american"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Kendra",
+                "synonyms": [
+                  "US female two",
+                  "u. s. female two",
+                  "female two",
+                  "american lady two",
+                  "american chick two",
+                  "american woman two",
+                  "american girl two",
+                  "american two"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Kimberly",
+                "synonyms": [
+                  "US female three",
+                  "u. s. female three",
+                  "female three",
+                  "american lady three",
+                  "american chick three",
+                  "american woman three",
+                  "american girl three",
+                  "american three"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Salli",
+                "synonyms": [
+                  "US female four",
+                  "u. s. female four",
+                  "female four",
+                  "american lady four",
+                  "american chick four",
+                  "american woman four",
+                  "american girl four",
+                  "american four"
+                ]
+              }
+            }
+          ],
+          "name": "LIST_OF_ACCENTS"
+        }
+      ],
+      "modelConfiguration": {
+        "fallbackIntentSensitivity": {
+          "level": "LOW"
+        }
+      }
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "SayPhraseIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "phrase",
+              "type": "AMAZON.SearchQuery",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1150093885742.679714548437"
+              }
+            }
+          ],
+          "delegationStrategy": "SKILL_RESPONSE"
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.1150093885742.679714548437",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Tell me what to say."
+          },
+          {
+            "type": "PlainText",
+            "value": "Go ahead and say your phrase, I\u0027m listening."
+          },
+          {
+            "type": "PlainText",
+            "value": "Tell me a phrase and I\u0027ll try to repeat it."
+          },
+          {
+            "type": "PlainText",
+            "value": "Ready when you are."
+          },
+          {
+            "type": "PlainText",
+            "value": "I\u0027m all ears."
+          },
+          {
+            "type": "PlainText",
+            "value": "I\u0027m ready, go for it."
+          },
+          {
+            "type": "PlainText",
+            "value": "Let me know what to say."
+          },
+          {
+            "type": "PlainText",
+            "value": "What would you like me to say?"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "40"
+}
