@@ -1,0 +1,208 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "With this skill you can tell Alexa what to say.  She can repeat your phrase with over 30 different voices/accents many voice modes!",
+          "examplePhrases": [
+            "Alexa, open Say What I Say.",
+            "Repeat after me, you are the best.",
+            "Change accent to British male."
+          ],
+          "keywords": [
+            "Repeat",
+            "say",
+            "say",
+            "again",
+            "talk",
+            "phrase",
+            "echo",
+            "parrot",
+            "talk",
+            "back",
+            "voice",
+            "change",
+            "voice",
+            "copy",
+            "speak",
+            "hear",
+            "sentence",
+            "word",
+            "accent"
+          ],
+          "name": "Say What I Say",
+          "description": "Have you always wanted to get Alexa to say certain things?  With this skill you can get Alexa to say almost anything you can think of!  This skill will also allow Alexa to repeat the things you say with more than 30 different voices and many different voice modes! You can change Alexa\u0027s accent and have her talk like a British Male!  You can also have Alexa talk fast, slow, with a high voice, or a low voice, backwards, in reverse, whispering, in a drunk voice, as a robot, spelling out words, and saying words with random beeps!  Try it out and have tons of fun!\n\nHow it works:\nTell Alexa to repeat your phrase by saying, \"repeat after me\".  Next, you can tell her what to say.\nAfter she tells you the phrase, you can have her repeat it by saying, \"say it again\".\nYou can change the way she says the phrase by saying something like, \"say it again fast\".\nTo change her accent, say something like \"change accent to British male\", or just say \"change accent\" for a random accent.\n\nBelow are a list of the following accents and voice modes.\n\nChanging Accents:\nFor a list of accents, say \"list accents\".\nJust say \"change accent to\" followed by the name of an accent.\nAvailable Accents - Alexa, American male (1, 2), American female (1, 2, 3, 4), Australian male, Australian female, British male, British female (1, 2), French male, French female (1, 2, 3), German male, German female (1, 2), Indian female (1, 2), Italian male, Italian female (1, 2), Japanese male, Japanese female, Portuguese male, Portuguese female (1, 2), Spanish male (1, 2), Spanish female (1, 2, 3, 4, 5), boy, girl\n\nChanging Voice Modes:\nFor a list of voice modes, say \"list voice modes\".\nJust say \"say it again\", followed by the name of the voice mode.\nAvailable Voice Modes - fast, slow, high, low, backwards, rewind, whisper, beep, spelled out, robot, drunk, valley girl, random\n\nAlexa will also include her own random comments before reciting your phrase.  To turn these off, you can say \"Turn off comments\".\nYou can also turn off hint prompts at the end of the phrase by saying something like, \"Turn hints off\".",
+          "smallIconUri": "file://assets/images/en-US_smallIconUri.png",
+          "updatesDescription": "Added additional voices.\nAdded ability to turn off hints.\nAdded ability to change to a random accent.\nImproved the voice interaction model.",
+          "largeIconUri": "file://assets/images/en-US_largeIconUri.png"
+        },
+        "en-CA": {
+          "summary": "With this skill you can tell Alexa what to say.  She can repeat your phrase with over 30 different voices/accents many voice modes!",
+          "examplePhrases": [
+            "Alexa, open Say What I Say.",
+            "Repeat after me, you are the best.",
+            "Change accent to British male."
+          ],
+          "keywords": [
+            "Repeat",
+            "say",
+            "say",
+            "again",
+            "talk",
+            "phrase",
+            "echo",
+            "parrot",
+            "talk",
+            "back",
+            "voice",
+            "change",
+            "voice",
+            "copy",
+            "speak",
+            "hear",
+            "sentence",
+            "word",
+            "accent"
+          ],
+          "name": "Say What I Say",
+          "description": "Have you always wanted to get Alexa to say certain things?  With this skill you can get Alexa to say almost anything you can think of!  This skill will also allow Alexa to repeat the things you say with more than 30 different voices and many different voice modes! You can change Alexa\u0027s accent and have her talk like a British Male!  You can also have Alexa talk fast, slow, with a high voice, or a low voice, backwards, in reverse, whispering, in a drunk voice, as a robot, spelling out words, and saying words with random beeps!  Try it out and have tons of fun!\n\nHow it works:\nTell Alexa to repeat your phrase by saying, \"repeat after me\".  Next, you can tell her what to say.\nAfter she tells you the phrase, you can have her repeat it by saying, \"say it again\".\nYou can change the way she says the phrase by saying something like, \"say it again fast\".\nTo change her accent, say something like \"change accent to British male\", or just say \"change accent\" for a random accent.\n\nBelow are a list of the following accents and voice modes.\n\nChanging Accents:\nFor a list of accents, say \"list accents\".\nJust say \"change accent to\" followed by the name of an accent.\nAvailable Accents - Alexa, American male (1, 2), American female (1, 2, 3, 4), Australian male, Australian female, British male, British female (1, 2), French male, French female (1, 2, 3), German male, German female (1, 2), Indian female (1, 2), Italian male, Italian female (1, 2), Japanese male, Japanese female, Portuguese male, Portuguese female (1, 2), Spanish male (1, 2), Spanish female (1, 2, 3, 4, 5), boy, girl\n\nChanging Voice Modes:\nFor a list of voice modes, say \"list voice modes\".\nJust say \"say it again\", followed by the name of the voice mode.\nAvailable Voice Modes - fast, slow, high, low, backwards, rewind, whisper, beep, spelled out, robot, drunk, valley girl, random\n\nAlexa will also include her own random comments before reciting your phrase.  To turn these off, you can say \"Turn off comments\".\nYou can also turn off hint prompts at the end of the phrase by saying something like, \"Turn hints off\".",
+          "smallIconUri": "file://assets/images/en-CA_smallIconUri.png",
+          "updatesDescription": "Added additional voices.\nAdded ability to turn off hints.\nAdded ability to change to a random accent.\nImproved the voice interaction model.",
+          "largeIconUri": "file://assets/images/en-CA_largeIconUri.png"
+        },
+        "en-IN": {
+          "summary": "With this skill you can tell Alexa what to say.  She can repeat your phrase with over 30 different voices/accents many voice modes!",
+          "examplePhrases": [
+            "Alexa, open Say What I Say.",
+            "Repeat after me, you are the best.",
+            "Change accent to British male."
+          ],
+          "keywords": [
+            "Repeat",
+            "say",
+            "say",
+            "again",
+            "talk",
+            "phrase",
+            "echo",
+            "parrot",
+            "talk",
+            "back",
+            "voice",
+            "change",
+            "voice",
+            "copy",
+            "speak",
+            "hear",
+            "sentence",
+            "word",
+            "accent"
+          ],
+          "name": "Say What I Say",
+          "description": "Have you always wanted to get Alexa to say certain things?  With this skill you can get Alexa to say almost anything you can think of!  This skill will also allow Alexa to repeat the things you say with more than 30 different voices and many different voice modes! You can change Alexa\u0027s accent and have her talk like a British Male!  You can also have Alexa talk fast, slow, with a high voice, or a low voice, backwards, in reverse, whispering, in a drunk voice, as a robot, spelling out words, and saying words with random beeps!  Try it out and have tons of fun!\n\nHow it works:\nTell Alexa to repeat your phrase by saying, \"repeat after me\".  Next, you can tell her what to say.\nAfter she tells you the phrase, you can have her repeat it by saying, \"say it again\".\nYou can change the way she says the phrase by saying something like, \"say it again fast\".\nTo change her accent, say something like \"change accent to British male\", or just say \"change accent\" for a random accent.\n\nBelow are a list of the following accents and voice modes.\n\nChanging Accents:\nFor a list of accents, say \"list accents\".\nJust say \"change accent to\" followed by the name of an accent.\nAvailable Accents - Alexa, American male (1, 2), American female (1, 2, 3, 4), Australian male, Australian female, British male, British female (1, 2), French male, French female (1, 2, 3), German male, German female (1, 2), Indian female (1, 2), Italian male, Italian female (1, 2), Japanese male, Japanese female, Portuguese male, Portuguese female (1, 2), Spanish male (1, 2), Spanish female (1, 2, 3, 4, 5), boy, girl\n\nChanging Voice Modes:\nFor a list of voice modes, say \"list voice modes\".\nJust say \"say it again\", followed by the name of the voice mode.\nAvailable Voice Modes - fast, slow, high, low, backwards, rewind, whisper, beep, spelled out, robot, drunk, valley girl, random\n\nAlexa will also include her own random comments before reciting your phrase.  To turn these off, you can say \"Turn off comments\".\nYou can also turn off hint prompts at the end of the phrase by saying something like, \"Turn hints off\".",
+          "smallIconUri": "file://assets/images/en-IN_smallIconUri.png",
+          "updatesDescription": "Added additional voices.\nAdded ability to turn off hints.\nAdded ability to change to a random accent.\nImproved the voice interaction model.",
+          "largeIconUri": "file://assets/images/en-IN_largeIconUri.png"
+        },
+        "en-AU": {
+          "summary": "With this skill you can tell Alexa what to say.  She can repeat your phrase with over 30 different voices/accents many voice modes!",
+          "examplePhrases": [
+            "Alexa, open Say What I Say.",
+            "Repeat after me, you are the best.",
+            "Change accent to British male."
+          ],
+          "keywords": [
+            "Repeat",
+            "say",
+            "say",
+            "again",
+            "talk",
+            "phrase",
+            "echo",
+            "parrot",
+            "talk",
+            "back",
+            "voice",
+            "change",
+            "voice",
+            "copy",
+            "speak",
+            "hear",
+            "sentence",
+            "word",
+            "accent"
+          ],
+          "name": "Say What I Say",
+          "description": "Have you always wanted to get Alexa to say certain things?  With this skill you can get Alexa to say almost anything you can think of!  This skill will also allow Alexa to repeat the things you say with more than 30 different voices and many different voice modes! You can change Alexa\u0027s accent and have her talk like a British Male!  You can also have Alexa talk fast, slow, with a high voice, or a low voice, backwards, in reverse, whispering, in a drunk voice, as a robot, spelling out words, and saying words with random beeps!  Try it out and have tons of fun!\n\nHow it works:\nTell Alexa to repeat your phrase by saying, \"repeat after me\".  Next, you can tell her what to say.\nAfter she tells you the phrase, you can have her repeat it by saying, \"say it again\".\nYou can change the way she says the phrase by saying something like, \"say it again fast\".\nTo change her accent, say something like \"change accent to British male\", or just say \"change accent\" for a random accent.\n\nBelow are a list of the following accents and voice modes.\n\nChanging Accents:\nFor a list of accents, say \"list accents\".\nJust say \"change accent to\" followed by the name of an accent.\nAvailable Accents - Alexa, American male (1, 2), American female (1, 2, 3, 4), Australian male, Australian female, British male, British female (1, 2), French male, French female (1, 2, 3), German male, German female (1, 2), Indian female (1, 2), Italian male, Italian female (1, 2), Japanese male, Japanese female, Portuguese male, Portuguese female (1, 2), Spanish male (1, 2), Spanish female (1, 2, 3, 4, 5), boy, girl\n\nChanging Voice Modes:\nFor a list of voice modes, say \"list voice modes\".\nJust say \"say it again\", followed by the name of the voice mode.\nAvailable Voice Modes - fast, slow, high, low, backwards, rewind, whisper, beep, spelled out, robot, drunk, valley girl, random\n\nAlexa will also include her own random comments before reciting your phrase.  To turn these off, you can say \"Turn off comments\".\nYou can also turn off hint prompts at the end of the phrase by saying something like, \"Turn hints off\".",
+          "smallIconUri": "file://assets/images/en-AU_smallIconUri.png",
+          "updatesDescription": "Added additional voices.\nAdded ability to turn off hints.\nAdded ability to change to a random accent.\nImproved the voice interaction model.",
+          "largeIconUri": "file://assets/images/en-AU_largeIconUri.png"
+        },
+        "en-GB": {
+          "summary": "With this skill you can tell Alexa what to say.  She can repeat your phrase with over 30 different voices/accents many voice modes!",
+          "examplePhrases": [
+            "Alexa, open Say What I Say.",
+            "Repeat after me, you are the best.",
+            "Change accent to British male."
+          ],
+          "keywords": [
+            "Repeat",
+            "say",
+            "say",
+            "again",
+            "talk",
+            "phrase",
+            "echo",
+            "parrot",
+            "talk",
+            "back",
+            "voice",
+            "change",
+            "voice",
+            "copy",
+            "speak",
+            "hear",
+            "sentence",
+            "word",
+            "accent"
+          ],
+          "name": "Say What I Say",
+          "description": "Have you always wanted to get Alexa to say certain things?  With this skill you can get Alexa to say almost anything you can think of!  This skill will also allow Alexa to repeat the things you say with more than 30 different voices and many different voice modes! You can change Alexa\u0027s accent and have her talk like a British Male!  You can also have Alexa talk fast, slow, with a high voice, or a low voice, backwards, in reverse, whispering, in a drunk voice, as a robot, spelling out words, and saying words with random beeps!  Try it out and have tons of fun!\n\nHow it works:\nTell Alexa to repeat your phrase by saying, \"repeat after me\".  Next, you can tell her what to say.\nAfter she tells you the phrase, you can have her repeat it by saying, \"say it again\".\nYou can change the way she says the phrase by saying something like, \"say it again fast\".\nTo change her accent, say something like \"change accent to British male\", or just say \"change accent\" for a random accent.\n\nBelow are a list of the following accents and voice modes.\n\nChanging Accents:\nFor a list of accents, say \"list accents\".\nJust say \"change accent to\" followed by the name of an accent.\nAvailable Accents - Alexa, American male (1, 2), American female (1, 2, 3, 4), Australian male, Australian female, British male, British female (1, 2), French male, French female (1, 2, 3), German male, German female (1, 2), Indian female (1, 2), Italian male, Italian female (1, 2), Japanese male, Japanese female, Portuguese male, Portuguese female (1, 2), Spanish male (1, 2), Spanish female (1, 2, 3, 4, 5), boy, girl\n\nChanging Voice Modes:\nFor a list of voice modes, say \"list voice modes\".\nJust say \"say it again\", followed by the name of the voice mode.\nAvailable Voice Modes - fast, slow, high, low, backwards, rewind, whisper, beep, spelled out, robot, drunk, valley girl, random\n\nAlexa will also include her own random comments before reciting your phrase.  To turn these off, you can say \"Turn off comments\".\nYou can also turn off hint prompts at the end of the phrase by saying something like, \"Turn hints off\".",
+          "smallIconUri": "file://assets/images/en-GB_smallIconUri.png",
+          "updatesDescription": "Added additional voices.\nAdded ability to turn off hints.\nAdded ability to change to a random accent.\nImproved the voice interaction model.",
+          "largeIconUri": "file://assets/images/en-GB_largeIconUri.png"
+        }
+      },
+      "automaticDistribution": {
+        "isActive": false
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "No account, permissions, or hardware requirements.  Main utterances are: Repeat after me (your phrase), say it again (voice mode), change accent to (accent), list voice modes, list accents, turn comments (on/off), turn hints (on/off), and help.",
+      "category": "NOVELTY",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:733489395919:function:sayWhatISay_3"
+        },
+        "interfaces": []
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "locales": {
+        "en-US": {},
+        "en-CA": {},
+        "en-IN": {},
+        "en-AU": {},
+        "en-GB": {}
+      },
+      "containsAds": false,
+      "isExportCompliant": true,
+      "isChildDirected": false,
+      "usesPersonalInfo": false
+    }
+  }
+}
