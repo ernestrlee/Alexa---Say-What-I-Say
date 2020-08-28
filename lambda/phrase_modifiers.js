@@ -464,7 +464,8 @@ function setRate(percent) {
 module.exports = {
     Utils: {
         getERSlotValue,
-        buildSpeechOutput,        
+        buildSpeechOutput,
+        getModifiedPhrase,       
         addPauses,
         flipBackwards,
         reversePhrase,
