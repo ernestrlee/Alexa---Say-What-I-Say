@@ -1,11 +1,12 @@
-// This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK (v2).
-// Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
-// session persistence, api calls, and more.
+// This skill uses the Alexa Skills Kit SDK (v2).
 const Alexa = require('ask-sdk-core');
 const Responses = require('./responses.js');
 const Voices = require('./voices.js');
 const VoiceModes = require('./voice_modes.js');
 const { Utils } = require('./phrase_modifiers');
+const util = require('./util');
+const interceptors = require('./interceptors');
+
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -17,15 +18,9 @@ const LaunchRequestHandler = {
         const welcomeSpeech = "Welcome to say what I say. Start by saying, repeat after me. ";
         let repromptText = Responses.getRandomEndPrompt();
         let speakOutput = welcomeSpeech;
-
-        // Initialize session attributes
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-        sessionAttributes.lastPhrase = "";
-        sessionAttributes.randomRemarks = true;
-        sessionAttributes.randomHints = true;
-        sessionAttributes.currentAccent = "default";
-
-        let currentAccent = sessionAttributes.currentAccent;
+        
+        let currentAccent = sessionAttributes.currentAccent || "default";
 
         speakOutput = Utils.buildSpeechOutput(speakOutput, currentAccent, "");
         repromptText = Utils.buildSpeechOutput(repromptText, currentAccent, "");
@@ -37,7 +32,6 @@ const LaunchRequestHandler = {
             .getResponse();
     }
 };
-
 
 // // For custom task
 // const SayPhraseTaskHandler = {
@@ -80,7 +74,7 @@ const SayPhraseStartedHandler = {
     },
     handle(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-        const currentAccent = sessionAttributes.currentAccent;
+        const currentAccent = sessionAttributes.currentAccent || "default";
         let cardTitle = "Say your phrase";
         let cardContent = "Tell me what to say.";
         let speakOutput = Responses.getRandomInitialPrompt();
@@ -104,9 +98,9 @@ const SayPhraseCompletedHandler = {
     },
     handle(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-        const currentAccent = sessionAttributes.currentAccent;
-        const randomRemarks = sessionAttributes.randomRemarks;
-        const randomHints = sessionAttributes.randomHints;
+        const currentAccent = sessionAttributes.currentAccent || "default";
+        const randomRemarks = sessionAttributes.randomRemarks || true;
+        const randomHints = sessionAttributes.randomHints || true;
         const cardTitle = "Repeating your phrase";
         let cardContent = "Here goes your phrase... ";
         const phrase = Alexa.getSlotValue(handlerInput.requestEnvelope, 'phrase');
@@ -132,7 +126,6 @@ const SayPhraseCompletedHandler = {
             speakOutput = Utils.buildSpeechOutput(startPhrase + phrase + endPhrase + Responses.getRandomEndPrompt(), currentAccent, "");
             cardContent = `I heard: \n${phrase}`;
             sessionAttributes.lastPhrase = phrase;
-            handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
         }
         else {
             speakOutput = "To tell me a phrase, say, repeat after me. ";
@@ -155,10 +148,10 @@ const SayAgainHandler = {
     },
     handle(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-        const lastPhrase = sessionAttributes.lastPhrase;
-        const currentAccent = sessionAttributes.currentAccent;
-        const randomRemarks = sessionAttributes.randomRemarks;
-        const randomHints = sessionAttributes.randomHints;
+        const lastPhrase = sessionAttributes.lastPhrase || "";
+        const currentAccent = sessionAttributes.currentAccent || "default";
+        const randomRemarks = sessionAttributes.randomRemarks || true;
+        const randomHints = sessionAttributes.randomHints || true;
         const cardTitle = "Saying the last phrase";
         let cardContent = "";
         let repromptText = `To hear the phrase again, say, say it <break time='.001s'/> again. ${Responses.getRandomEndPrompt()}`;
@@ -200,7 +193,7 @@ const SayAgainHandler = {
             if (isValidMode && lastPhrase != "") {
                 startPhrase += "in " + speakAgainMode + " mode. " + " <break time='.5s'/>";
 
-                let modOutput = Utils.buildSpeechOutput(lastPhrase, currentAccent, speakAgainMode);
+                let modOutput = Utils.getModifiedPhrase(lastPhrase, speakAgainMode);
                 speakOutput = Utils.buildSpeechOutput(startPhrase + modOutput + endPhrase + Responses.getRandomEndPrompt(), currentAccent, "");
                 cardContent = "Repeating your last phrase (mode: " + speakAgainMode + "):\n " + lastPhrase;
             }
@@ -242,7 +235,7 @@ const SayVoiceModesHandler = {
     },
     handle(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-        const currentAccent = sessionAttributes.currentAccent;
+        const currentAccent = sessionAttributes.currentAccent || "default";
         const cardTitle = "Voice Mode List";
         const cardContent = "List of voice modes:\n" +
             "Fast, slow, low, high, backwards, rewind, whisper, drunk, robot, spell, and beep.";
@@ -269,7 +262,7 @@ const SayAccentsHandler = {
     },
     handle(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-        const currentAccent = sessionAttributes.currentAccent;
+        const currentAccent = sessionAttributes.currentAccent || "default";
         const cardTitle = "Accent List";
         const cardContent = "List of accents:\n" +
             "American, Australian, British, French, German, Indian, Italian, Japanese, Portuguese, and Spanish.";
@@ -296,7 +289,7 @@ const ChangeAccentHandler = {
     },
     handle(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-        let currentAccent = sessionAttributes.currentAccent;
+        let currentAccent = sessionAttributes.currentAccent || "default";
         const cardTitle = "Changing Accent";
         let cardContent = "";
         let repromptText = "To change an accent, say something like, change accent to, " + Voices.getRandomVoice().description + ". ";
@@ -311,8 +304,7 @@ const ChangeAccentHandler = {
 
             currentAccent = voiceName;
             sessionAttributes.currentAccent = currentAccent;
-            handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
-
+            
             speakOutput = `Accent has been changed to ${voiceDescription}. ${Responses.getRandomEndPrompt()}`;
             cardContent = `Accent has been changed to ${voiceDescription}. `;
         }
@@ -335,8 +327,7 @@ const ChangeAccentHandler = {
                 currentAccent = newAccent;
 
                 sessionAttributes.currentAccent = currentAccent;
-                handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
-
+                
                 speakOutput = `Accent has been changed to ${accentSlot.value}. ${Responses.getRandomEndPrompt()}`;
                 cardContent = `Accent has been changed to ${accentSlot.value}. `;
             }
@@ -372,8 +363,8 @@ const ToggleCommentsHandler = {
     },
     handle(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-        const currentAccent = sessionAttributes.currentAccent;
-        let randomRemarks = sessionAttributes.randomRemarks;
+        const currentAccent = sessionAttributes.currentAccent || "default";
+        let randomRemarks = sessionAttributes.randomRemarks || true;
         const cardTitle = "Comment Settings";
         let cardContent = "";
         let repromptText = `To turn comments on or off, say something like, turn comments on. ${Responses.getRandomHelpResponse()}`;
@@ -385,8 +376,7 @@ const ToggleCommentsHandler = {
                 randomRemarks = false;
 
                 sessionAttributes.randomRemarks = randomRemarks;
-                handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
-
+                
                 speakOutput = `Comments have been turned off. ${Responses.getRandomEndPrompt()}`;
                 cardContent = "Comments have been turned off.";
             }
@@ -394,8 +384,7 @@ const ToggleCommentsHandler = {
                 randomRemarks = true;
 
                 sessionAttributes.randomRemarks = randomRemarks;
-                handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
-
+                
                 speakOutput = `Comments are now turned on. ${Responses.getRandomEndPrompt()}`;
                 cardContent = "Comment are turned on.";
             }
@@ -434,8 +423,8 @@ const ToggleHintsHandler = {
     },
     handle(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-        const currentAccent = sessionAttributes.currentAccent;
-        let randomHints = sessionAttributes.randomHints;
+        const currentAccent = sessionAttributes.currentAccent || "default";
+        let randomHints = sessionAttributes.randomHints || true;
         const cardTitle = "Hint Settings";
         let cardContent = "";
         let repromptText = `To turn hints on or off, say something like, turn hints on. ${Responses.getRandomHelpResponse()}`;
@@ -447,8 +436,7 @@ const ToggleHintsHandler = {
                 randomHints = false;
 
                 sessionAttributes.randomHints = randomHints;
-                handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
-
+                
                 speakOutput = `Hints have been turned off. ${Responses.getRandomEndPrompt()}`;
                 cardContent = "Hints have been turned off.";
             }
@@ -456,8 +444,7 @@ const ToggleHintsHandler = {
                 randomHints = true;
 
                 sessionAttributes.randomHints = randomHints;
-                handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
-
+                
                 speakOutput = `Hints are now turned on. ${Responses.getRandomEndPrompt()}`;
                 cardContent = "Hints are turned on.";
             }
@@ -496,18 +483,18 @@ const HelpIntentHandler = {
     },
     handle(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-        const currentAccent = sessionAttributes.currentAccent;
+        const currentAccent = sessionAttributes.currentAccent || "default";
         const cardTitle = "Help";
         let repromptText = "To tell me a phrase, say, repeat after me.";
         const pause = "<break time='.5s' />";
         let speakOutput = `To hear me repeat a phrase, say, repeat after me. ${pause}
-            To repeat a phrase, say, say it <break time='.001s'/> again. ${pause}
-            Comments can be turned on, or off, by saying something like, turn comments, off. ${pause}
-            Hints can be turned on, or off, by saying something like, turn hints, off. ${pause}
+            To hear me say the last phrase, say, say it <break time='.001s'/> again. ${pause}
+            To change my accent, say something like, change accent to ${Voices.getRandomVoice().description}. ${pause}
             To hear your phrase in another voice mode, say something like, say it again, ${VoiceModes.getRandomVoiceMode()}. ${pause}
             For a list of voice modes, say, list voice modes. ${pause}
-            To change my accent, say something like, change accent to ${Voices.getRandomVoice().description}. ${pause}
             For a list of accents I can speak, say, list accents. ${pause}
+            Comments can be turned on, or off, by saying something like, turn comments, off. ${pause}
+            Hints can be turned on, or off, by saying something like, turn hints, off. ${pause}
             To end this skill, say, end. ${pause}
             ${Responses.getRandomEndPrompt()}`;
         const cardContent = "List of commands:\n" +
@@ -537,7 +524,7 @@ const FallbackIntentHandler = {
     },
     handle(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-        const currentAccent = sessionAttributes.currentAccent;
+        const currentAccent = sessionAttributes.currentAccent || "default";
         const cardTitle = "Need Help?";
         const cardContent = "I didn't understand what you were trying to say. For help, say help.";
         let speakOutput = Responses.getRandomFallback() + Responses.getRandomHelpResponse();
@@ -641,6 +628,9 @@ exports.handler = Alexa.SkillBuilders.custom()
         SessionEndedRequestHandler,
         IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
     )
+    .addRequestInterceptors(interceptors.LoadAttributesRequestInterceptor)
+    .addResponseInterceptors(interceptors.SaveAttributesResponseInterceptor)
+    .withPersistenceAdapter(util.getPersistenceAdapter())
     .addErrorHandlers(
         ErrorHandler,
     )
